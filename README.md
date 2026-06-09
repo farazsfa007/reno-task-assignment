@@ -1,36 +1,206 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Reno Notice Board Management System
 
-## Getting Started
+A simple Notice Board Management System built with Next.js, TypeScript, Prisma, and Neon PostgreSQL.
 
-First, run the development server:
+## Live Demo
+
+https://agent-6a2192cd060910152f844--reno-task-dashboard.netlify.app/
+
+## GitHub Repository
+
+https://github.com/farazsfa007/reno-task-assignment
+
+---
+
+## Features
+
+* Create Notices
+* View All Notices
+* Update Existing Notices
+* Delete Notices
+* Notice Categories
+
+  * Exam
+  * Event
+  * General
+* Priority Levels
+
+  * Normal
+  * Urgent
+* Publish Date Management
+* Responsive UI
+* PostgreSQL Database Integration
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* Next.js
+* React
+* TypeScript
+* CSS
+
+### Backend
+
+* Next.js API Routes
+* Prisma ORM
+
+### Database
+
+* Neon PostgreSQL
+
+### Deployment
+
+* Netlify
+
+---
+
+## Project Structure
+
+```bash
+pages/
+│
+├── index.tsx
+├── notice/
+│   ├── [id].tsx
+│   └── new.tsx
+│
+├── api/
+│   └── notices/
+│       ├── index.ts
+│       └── [id].ts
+
+lib/
+└── prisma.ts
+
+prisma/
+└── schema.prisma
+```
+
+---
+
+## Database Schema
+
+```prisma
+model Notice {
+  id          Int      @id @default(autoincrement())
+  title       String
+  body        String
+  category    String
+  priority    String
+  publishDate DateTime
+  createdAt   DateTime @default(now())
+}
+```
+
+---
+
+## Local Installation
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/farazsfa007/reno-task-assignment.git
+cd reno-task-assignment
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env` file:
+
+```env
+DATABASE_URL="your_neon_database_url"
+```
+
+---
+
+### 4. Run Prisma Migration
+
+```bash
+npx prisma migrate dev --name init
+```
+
+---
+
+### 5. Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+---
+
+### 6. Start Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Application will run on:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## API Endpoints
 
-To learn more about Next.js, take a look at the following resources:
+### Get All Notices
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```http
+GET /api/notices
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Create Notice
 
-## Deploy on Vercel
+```http
+POST /api/notices
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Get Single Notice
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```http
+GET /api/notices/:id
+```
+
+### Update Notice
+
+```http
+PUT /api/notices/:id
+```
+
+### Delete Notice
+
+```http
+DELETE /api/notices/:id
+```
+
+---
+
+## Future Improvements
+
+* User Authentication
+* Search and Filtering
+* Pagination
+* Rich Text Editor
+* File Attachments
+* Notice Expiry Dates
+* Role-Based Access Control
+* Dashboard Analytics
+
+---
+
+## Author
+
+Faraz
+
+Built as a Full Stack Next.js Assignment Project using Prisma ORM and Neon PostgreSQL.
